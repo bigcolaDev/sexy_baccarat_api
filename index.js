@@ -3,6 +3,8 @@ const axios = require("axios");
 const cors = require("cors");
 const qs = require("qs");
 const bodyParser = require("body-parser");
+const schedule = require("node-schedule");
+
 const app = express();
 
 //middleware
@@ -52,7 +54,16 @@ app.get("/", (req, res) => {
 	axios(config)
 		.then(function (response) {
 			res.send(JSON.stringify(response.data));
-			// res.send(response.data);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+});
+
+schedule.scheduleJob("* * * * *", function () {
+	axios(config)
+		.then(function (response) {
+			console.log("finished...");
 		})
 		.catch(function (error) {
 			console.log(error);
