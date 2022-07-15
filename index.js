@@ -3,8 +3,6 @@ const axios = require("axios");
 const cors = require("cors");
 const qs = require("qs");
 const bodyParser = require("body-parser");
-const schedule = require("node-schedule");
-
 const app = express();
 
 //middleware
@@ -29,7 +27,7 @@ const config = {
 		"content-length": "2139",
 		"content-type": "application/x-www-form-urlencoded; charset=UTF-8",
 		cookie:
-			"ROUTEID=.bacweb07; visid_incap_2676700=7IufW92pQeaNYleW7corwQvxz2IAAAAAQUIPAAAAAAB+HNaSzP0IqdaygXI0+rGL; nlbi_2676700=ktMwBq1BsA62zqn/o5WArQAAAABFEa92415bvPALfxsb6G2h; rcr=987; load_balancer=2a4dd6facf6444aaac4b98a724505b80; _ga=GA1.2.1511412549.1657794830; _gid=GA1.2.842123660.1657794830; JSESSIONID=81ED13DA01EF6FF6825B88214E44980F; incap_ses_8025_2676700=RBUHADF+kRXrBFk0M4deb/YL0GIAAAAAHwccgs24XkGlVgpI7ggkkw==; _gat_gtag_UA_153578037_2=1",
+			"visid_incap_2676700=7IufW92pQeaNYleW7corwQvxz2IAAAAAQUIPAAAAAAB+HNaSzP0IqdaygXI0+rGL; load_balancer=2a4dd6facf6444aaac4b98a724505b80; _ga=GA1.2.1511412549.1657794830; _gid=GA1.2.842123660.1657794830; ROUTEID=.bacweb14; nlbi_2676700=aqAOcnvJxEJ+TjVXo5WArQAAAAAUy57qh1os2J7Qym+sUh52; incap_ses_8025_2676700=2FivIh+9eXBaxo80M4deb37H0GIAAAAAJDYffG1c0oNwPyISkABFvw==; rcr=987; JSESSIONID=F9DA09C51E666D59D32F5D6DDDE3BF7D; _gat_gtag_UA_153578037_2=1",
 		host: "bpweb.semgbow777.com",
 		origin: "https://bpweb.semgbow777.com",
 		referer:
@@ -58,14 +56,9 @@ app.get("/", (req, res) => {
 		.catch(function (error) {
 			console.log(error);
 		});
-});
-
-schedule.scheduleJob("* * * * *", function () {
-	axios(config)
-		.then(function (response) {
-			console.log("finished...");
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+	//set cookie
+	res.cookie(
+		"visid_incap_2676700",
+		"7IufW92pQeaNYleW7corwQvxz2IAAAAAQUIPAAAAAAB+HNaSzP0IqdaygXI0+rGL",
+	);
 });
